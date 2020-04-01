@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input#id").focus(function() {
+			$(this).css("background-color", "yellow");
+		});
+
+		$("input").blur(function() {
+			$(this).css("background-color", "white");
+		});
+		
+		$("input#pw").focus(function() {
+			$(this).css("background-color", "orange");
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div>아이디 : <input type="text" id="id" name="name"></div>
+	<div>패스워드 <input type="password" id="pw" name="pw"></div>
+</body>
+</html>

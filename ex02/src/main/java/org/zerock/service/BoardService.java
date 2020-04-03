@@ -1,7 +1,8 @@
 package org.zerock.service;
-
+// 3
 import java.util.List;
 
+import org.zerock.domain.Between;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -17,4 +18,15 @@ public interface BoardService {
 	public boolean modify(BoardVO board);
 	// 5. 게시글 삭제
 	public boolean remove(long bno);
+	
+	// 퀴즈, 전체기시판 글갯수
+	public int scount();
+	
+	public long user();
+	
+	// 갯수
+	public long count(String writer);
+	
+	// 구간 게시글 갯수
+	public long bcount(Between between);
 }

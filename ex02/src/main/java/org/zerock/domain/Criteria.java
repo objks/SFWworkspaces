@@ -14,7 +14,7 @@ public class Criteria {
 	
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
-		this.amount = amount;
+		this.amount = amount;		// 페이지에서 보여주는 데이터 수
 	}
 
 	public Criteria() {

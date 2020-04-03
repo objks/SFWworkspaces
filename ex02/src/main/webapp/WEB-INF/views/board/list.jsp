@@ -15,102 +15,113 @@
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-	
-	<div id="canvas-holder" style="width:40%">
+
+	<div id="canvas-holder" style="width: 40%">
 		<canvas id="chart-area"></canvas>
-</div>
-<button id="randomizeData">Randomize Data</button>
-<button id="addDataset">Add Dataset</button>
-<button id="removeDataset">Remove Dataset</button>
-<script>
-	var randomScalingFactor = function() {
-		return Math.round(Math.random() * 100);
-	};
-
-	var config = {
-		type : 'pie',
-		data : {
-			datasets : [ {
-				data : [ randomScalingFactor(), randomScalingFactor(),
-						randomScalingFactor(), randomScalingFactor(),
-						randomScalingFactor(), ],
-				backgroundColor : [ window.chartColors.red,
-						window.chartColors.orange, window.chartColors.yellow,
-						window.chartColors.green, window.chartColors.blue, ],
-				label : 'Dataset 1'
-			} ],
-			labels : [ 'Red', 'Orange', 'Yellow', 'Green', 'Blue' ]
-		},
-		options : {
-			responsive : true
-		}
-	};
-
-	window.onload = function() {
-		var ctx = document.getElementById('chart-area').getContext('2d');
-		window.myPie = new Chart(ctx, config);
-	};
-
-	document.getElementById('randomizeData').addEventListener('click',
-			function() {
-				config.data.datasets.forEach(function(dataset) {
-					dataset.data = dataset.data.map(function() {
-						return randomScalingFactor();
-					});
-				});
-
-				window.myPie.update();
-			});
-
-	var colorNames = Object.keys(window.chartColors);
-	document.getElementById('addDataset').addEventListener('click', function() {
-		var newDataset = {
-			backgroundColor : [],
-			data : [],
-			label : 'New dataset ' + config.data.datasets.length,
+	</div>
+	<button id="randomizeData">Randomize Data</button>
+	<button id="addDataset">Add Dataset</button>
+	<button id="removeDataset">Remove Dataset</button>
+	<script>
+		var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
 		};
 
-		for (var index = 0; index < config.data.labels.length; ++index) {
-			newDataset.data.push(randomScalingFactor());
+		var config = {
+			type : 'pie',
+			data : {
+				datasets : [ {
+					data : [ randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), ],
+					backgroundColor : [ window.chartColors.red,
+							window.chartColors.orange,
+							window.chartColors.yellow,
+							window.chartColors.green, window.chartColors.blue, ],
+					label : 'Dataset 1'
+				} ],
+				labels : [ 'Red', 'Orange', 'Yellow', 'Green', 'Blue' ]
+			},
+			options : {
+				responsive : true
+			}
+		};
 
-			var colorName = colorNames[index % colorNames.length];
-			var newColor = window.chartColors[colorName];
-			newDataset.backgroundColor.push(newColor);
-		}
+		window.onload = function() {
+			var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myPie = new Chart(ctx, config);
+		};
 
-		config.data.datasets.push(newDataset);
-		window.myPie.update();
-	});
+		document.getElementById('randomizeData').addEventListener('click',
+				function() {
+					config.data.datasets.forEach(function(dataset) {
+						dataset.data = dataset.data.map(function() {
+							return randomScalingFactor();
+						});
+					});
 
-	document.getElementById('removeDataset').addEventListener('click',
-			function() {
-				config.data.datasets.splice(0, 1);
-				window.myPie.update();
-			});
-</script>
+					window.myPie.update();
+				});
+
+		var colorNames = Object.keys(window.chartColors);
+		document
+				.getElementById('addDataset')
+				.addEventListener(
+						'click',
+						function() {
+							var newDataset = {
+								backgroundColor : [],
+								data : [],
+								label : 'New dataset '
+										+ config.data.datasets.length,
+							};
+
+							for (var index = 0; index < config.data.labels.length; ++index) {
+								newDataset.data.push(randomScalingFactor());
+
+								var colorName = colorNames[index
+										% colorNames.length];
+								var newColor = window.chartColors[colorName];
+								newDataset.backgroundColor.push(newColor);
+							}
+
+							config.data.datasets.push(newDataset);
+							window.myPie.update();
+						});
+
+		document.getElementById('removeDataset').addEventListener('click',
+				function() {
+					config.data.datasets.splice(0, 1);
+					window.myPie.update();
+				});
+	</script>
 
 
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				var result = '<c:out value="${result}"/>';
-				checkModal(result);
-				function checkModal(result) {
-					if (result == '') {
-						return;
-					}
-					if (parseInt(result) > 0) {
-						$(".modal-body").html(
-								"게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-					}
-					$("#myModal").modal("show");
-				}
-				$("#regBtn").on("click", function() {
-					self.location = "/board/register";
-				})
-			});
-</script>
-<br><br><br>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							var result = '<c:out value="${result}"/>';
+							checkModal(result);
+							function checkModal(result) {
+								if (result == '') {
+									return;
+								}
+								if (parseInt(result) > 0) {
+									$(".modal-body").html(
+											"게시글 " + parseInt(result)
+													+ " 번이 등록되었습니다.");
+								}
+								$("#myModal").modal("show");
+							}
+							$("#regBtn").on("click", function() {
+								self.location = "/board/register";
+							})
+						});
+	</script>
+	<br>
+	<br>
+	<br>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
@@ -121,7 +132,8 @@
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<table width="100%"	class="table table-striped table-bordered table-hover">
+					<table width="100%"
+						class="table table-striped table-bordered table-hover">
 
 						<thead>
 							<tr>
@@ -144,6 +156,25 @@
 							</tr>
 						</c:forEach>
 					</table>
+
+					<div class='pull-right'>
+						<ul class="pagination">
+
+							<c:if test="${pageMaker.prev }">
+								<li class="paginame_button previous"><a href="/board/list?pageNum=${pageMaker.startPage-1}"> prev</a></li>
+							</c:if>
+
+							<c:forEach var="num" begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }">
+								<li class="paginame_button"><a href="/board/list?pageNum=${num}"> ${num}
+										&nbsp;</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next }">
+								<li class="paginame_button next"><a href="/board/list?pageNum=${pageMaker.endPage+1}"> next</a></li>
+							</c:if>
+						</ul>
+					</div>
 
 					<!-- Modal 추가 -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

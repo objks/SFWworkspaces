@@ -45,4 +45,23 @@
   		]]>
   	</select>
   	
+  	<!-- 게시글의 총 갯수 -->
+  	<select id="count" resultType="int">
+  		select count(*) from tbl_board
+  	</select>
+  	
+  	<!-- '관리자'가 작성인자인 글의 총 갯수 -->
+  	<select id="user" resultType="long">
+  	select count(*) from TBL_BOARD where WRITER like '관리자'
+  	</select>
+  	
+  	<!-- 2 -->
+  	<select id="search" resultType="long">
+  	select count(*) from TBL_BOARD where WRITER like #{writer}
+  	</select>
+  	
+  	<select id="bet" resultType="long">
+  	select count(*) from TBL_BOARD where BNO between #{num1} and #{num2}
+  	</select>
+  	
   </mapper>

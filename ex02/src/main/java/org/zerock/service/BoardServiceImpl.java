@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.domain.Between;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
@@ -11,6 +12,10 @@ import org.zerock.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+
+/*
+ * mpl ->  
+ */
 
 @AllArgsConstructor
 @Log4j
@@ -54,4 +59,24 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(bno) == 1 ;
 	}
 
+	@Override
+	public int scount() {
+		return mapper.count();
+	}
+
+	@Override
+	public long user() {
+		return mapper.user();
+	}
+
+	@Override
+	public long count(String writer) {
+		return mapper.search(writer);
+	}
+
+	@Override
+	public long bcount(Between between) {
+		return mapper.bet(between);
+	}
+	
 }

@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping("/admin/*")
 @AllArgsConstructor
 public class BoardController {
 
@@ -61,46 +61,46 @@ public class BoardController {
 	}
 
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(BoardVO admin, RedirectAttributes rttr) {
 
-		log.info("register: " + board);
+		log.info("register: " + admin);
 
-		service.register(board);
+		service.register(admin);
 
-		rttr.addFlashAttribute("result", board.getBno());
+		rttr.addFlashAttribute("result", admin.getBno());
 
-		return "redirect:/board/list";
+		return "redirect:/admin/list";
 	}
 
 	// @GetMapping({ "/get", "/modify" })
 	// public void get(@RequestParam("bno") Long bno, Model model) {
 	//
 	// log.info("/get or modify ");
-	// model.addAttribute("board", service.get(bno));
+	// model.addAttribute("admin", service.get(bno));
 	// }
 
 	@GetMapping({ "/get", "/modify" })
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get or modify");
-		model.addAttribute("board", service.get(bno));
+		model.addAttribute("admin", service.get(bno));
 	}
 
 	// @PostMapping("/modify")
-	// public String modify(BoardVO board, RedirectAttributes rttr) {
-	// log.info("modify:" + board);
+	// public String modify(BoardVO admin, RedirectAttributes rttr) {
+	// log.info("modify:" + admin);
 	//
-	// if (service.modify(board)) {
+	// if (service.modify(admin)) {
 	// rttr.addFlashAttribute("result", "success");
 	// }
-	// return "redirect:/board/list";
+	// return "redirect:/admin/list";
 	// }
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("modify:" + board);
+	public String modify(BoardVO admin, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("modify:" + admin);
 
-		if (service.modify(board)) {
+		if (service.modify(admin)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 
@@ -109,7 +109,7 @@ public class BoardController {
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 
-		return "redirect:/board/list";
+		return "redirect:/admin/list";
 	}
 
 	// @PostMapping("/remove")
@@ -120,7 +120,7 @@ public class BoardController {
 	// if (service.remove(bno)) {
 	// rttr.addFlashAttribute("result", "success");
 	// }
-	// return "redirect:/board/list";
+	// return "redirect:/admin/list";
 	// }
 
 	@PostMapping("/remove")
@@ -135,7 +135,7 @@ public class BoardController {
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 
-		return "redirect:/board/list";
+		return "redirect:/admin/list";
 	}
 
 }

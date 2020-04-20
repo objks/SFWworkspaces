@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Register</h1>
+    <h1 class="page-header">admin Register</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -17,11 +17,11 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Register</div>
+      <div class="panel-heading">admin Register</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-        <form role="form" action="/board/register" method="post">
+        <form role="form" action="/admin/register" method="post">
           <div class="form-group">
             <label>Title</label> <input class="form-control" name='title'>
           </div>

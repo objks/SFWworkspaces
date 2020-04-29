@@ -1,0 +1,82 @@
+package org.zeroch.mapper;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.mapper.BoardMapper;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class BoardMapperTests {
+
+	@Setter(onMethod_ = { @Autowired} )
+	private BoardMapper mapper;
+	
+	@Test
+	public void testGetList() {
+		mapper.getList();
+	}
+	
+	@Test
+	public void testInsert() {
+		BoardVO board = new BoardVO();
+		board.setTitle("새로 작성하는 글");
+		board.setContent("새로 작성하는 내용");
+		board.setWriter("관리자");
+		
+		mapper.insert(board);	
+	}
+	
+	@Test
+	public void testInsertSelectKey() {
+		BoardVO board = new BoardVO();
+		board.setTitle("새로 작성하는 글");
+		board.setContent("새로 작성하는 내용");
+		board.setWriter("관리자1");
+		
+		mapper.insertSelectKey(board);	
+	}
+	
+	@Test
+	public void testRead() {
+		
+		mapper.read(2);	
+	}
+	
+	@Test
+	public void testDelete() {
+		log.info("삭제 개수 " + mapper.delete(2));
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO board = new BoardVO();
+		// 실행 전 존재하는 번호인지 확인할 것
+		board.setBno(5L);
+		board.setTitle("수정 제목");
+		board.setContent("수정된 내용");
+		board.setWriter("user00");
+		
+		int count = mapper.update(board);
+		log.info("UPDATE COUNT : " + count);
+	}
+	
+	@Test
+	public void testQuiz() {
+		mapper.quiz(3);
+	}
+	
+	@Test
+	public void testgetListWithPaging() {
+		Criteria aaa = new Criteria();
+		mapper.getListWithPaging(aaa);
+	}
+}

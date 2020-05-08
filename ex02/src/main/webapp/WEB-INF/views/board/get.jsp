@@ -99,6 +99,8 @@
 	})
 </script>
 <!-- 기본 모달창 -->
+
+
 <%@include file="../includes/footer.jsp"%>
 
 </body>
